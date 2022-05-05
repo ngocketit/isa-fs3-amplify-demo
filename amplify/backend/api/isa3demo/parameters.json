@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "isa3demo",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2022-05-03T09:47:18.303Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authisa3demo870b1281",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+type Blog @model @auth(rules: [
+  {allow: private}
+]) {
+  id: ID!
+  name: String!
+  posts: [Post] @hasMany
+}
+
+type Post @model @auth(rules: [
+  {allow: private}
+]) {
+  id: ID!
+  title: String!
+  content: String!
+  blog: Blog @belongsTo
+  comments: [Comment] @hasMany
+}
+
+type Comment @model @auth(rules: [
+  {allow: private}
+]) {
+  id: ID!
+  post: Post @belongsTo
+  content: String!
+}

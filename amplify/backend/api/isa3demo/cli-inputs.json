@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "apiName": "isa3demo",
+    "serviceName": "AppSync",
+    "gqlSchemaPath": "/Users/phivanngoc/Workspace/my/amplify/isa3-demo/amplify/backend/api/isa3demo/schema.graphql",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authisa3demo870b1281"
+    },
+    "conflictResolution": {},
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 7,
+        "apiKeyExpirationDate": "2022-05-10T10:09:24.506Z",
+        "keyDescription": ""
+      }
+    ]
+  }
+}
