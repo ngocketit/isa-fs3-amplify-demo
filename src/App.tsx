@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import '@aws-amplify/ui-react/styles.css'
 import { Authenticator } from '@aws-amplify/ui-react'
 import Box from '@mui/material/Box'
@@ -31,7 +31,7 @@ function App() {
     }
   }
 
-  const handleDeleteBlog = async (blog: Blog) => {
+  const handleDeleteBlog = useCallback(async (blog: Blog) => {
     try {
       await API.graphql(graphqlOperation(deleteBlog, {
         input: {
@@ -46,17 +46,17 @@ function App() {
     } catch (error) {
       console.error(error)
     }
-  }
+  }, [blogs, setBlogs])
 
-  const handleAddBlog = () => {
+  const handleAddBlog = useCallback(() => {
     setAddBlogOpen(true)
-  }
+  }, [setAddBlogOpen])
 
-  const handleAddBlogClose = () => {
+  const handleAddBlogClose = useCallback(() => {
     setAddBlogOpen(false)
-  }
+  }, [setAddBlogOpen])
 
-  const handleAddBlogSubmit = async ({name}: {name: string}) => {
+  const handleAddBlogSubmit = useCallback(async ({name}: {name: string}) => {
     setAddBlogOpen(false)
     try {
       await API.graphql(graphqlOperation(createBlog, {
@@ -67,7 +67,7 @@ function App() {
     } catch (error) {
       console.error(error)
     }
-  }
+  }, [setAddBlogOpen])
 
   useEffect(() => {
     Hub.listen('auth', (data: any) => {

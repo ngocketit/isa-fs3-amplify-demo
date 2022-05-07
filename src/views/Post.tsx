@@ -27,7 +27,7 @@ export default function PostPage() {
     }
   }, [postId, setPost])
 
-  const handleCommentSubmit = async ({comment}: {comment: string}) => {
+  const handleCommentSubmit = useCallback(async ({comment}: {comment: string}) => {
     try {
       await API.graphql(graphqlOperation(createComment, {
         input: {
@@ -38,9 +38,9 @@ export default function PostPage() {
     } catch (error) {
       console.error(error)
     }
-  }
+  }, [])
 
-  const handleDeleteComment = async (comment: Comment) => {
+  const handleDeleteComment = useCallback(async (comment: Comment) => {
     try {
       await API.graphql(graphqlOperation(deleteComment, {
         input: {
@@ -50,7 +50,7 @@ export default function PostPage() {
     } catch (error) {
       console.error(error)
     }
-  }
+  }, [])
 
   useEffect(() => {
     fetchPost()

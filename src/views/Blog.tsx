@@ -31,19 +31,19 @@ export default function BlogPage() {
     }
   }, [blogId])
 
-  const handleClickPost = (post: Post) => {
+  const handleClickPost = useCallback((post: Post) => {
     navigate(`/blogs/${blogId}/posts/${post.id}`)
-  }
+  }, [navigate])
 
-  const handleNewPostClick = () => {
+  const handleNewPostClick = useCallback(() => {
     setNewPostOpen(true)
-  }
+  }, [setNewPostOpen])
 
-  const handlePostFormClose = () => {
+  const handlePostFormClose = useCallback(() => {
     setNewPostOpen(false)
-  }
+  }, [setNewPostOpen])
 
-  const handlePostFormSubmit = async ({title, content}: {title: string, content: string}) => {
+  const handlePostFormSubmit = useCallback(async ({title, content}: {title: string, content: string}) => {
     try {
       await API.graphql(graphqlOperation(createPost, {
         input: {
@@ -56,7 +56,7 @@ export default function BlogPage() {
     } catch (error) {
       console.error(error)
     }
-  }
+  }, [setNewPostOpen])
 
   useEffect(() => {
     fetchBlog()
